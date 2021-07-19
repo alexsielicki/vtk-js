@@ -7,6 +7,7 @@ import vtkActor from 'vtk.js/Sources/Rendering/Core/Actor';
 import vtkCalculator from 'vtk.js/Sources/Filters/General/Calculator';
 import vtkConeSource from 'vtk.js/Sources/Filters/Sources/ConeSource';
 import vtkFullScreenRenderWindow from 'vtk.js/Sources/Rendering/Misc/FullScreenRenderWindow';
+import vtkOpenGLRenderWindow from 'vtk.js/Sources/Rendering/OpenGL/RenderWindow';
 import vtkMapper from 'vtk.js/Sources/Rendering/Core/Mapper';
 import { AttributeTypes } from 'vtk.js/Sources/Common/DataModel/DataSetAttributes/Constants';
 import { FieldDataTypes } from 'vtk.js/Sources/Common/DataModel/DataSet/Constants';
@@ -27,6 +28,11 @@ const fullScreenRenderer = vtkFullScreenRenderWindow.newInstance({
 });
 const renderer = fullScreenRenderer.getRenderer();
 const renderWindow = fullScreenRenderer.getRenderWindow();
+
+
+const openglRenderWindow = vtkOpenGLRenderWindow.newInstance();
+renderWindow.addView(openglRenderWindow);
+// openglRenderWindow.setContainer(container);
 
 // ----------------------------------------------------------------------------
 // Example code
@@ -96,10 +102,10 @@ resolutionChange.addEventListener('input', (e) => {
 
 vrbutton.addEventListener('click', (e) => {
   if (vrbutton.textContent === 'Send To VR') {
-    fullScreenRenderer.getOpenGLRenderWindow().startVR();
+    openglRenderWindow.startVR();
     vrbutton.textContent = 'Return From VR';
   } else {
-    fullScreenRenderer.getOpenGLRenderWindow().stopVR();
+    openglRenderWindow.stopVR();
     vrbutton.textContent = 'Send To VR';
   }
 });
