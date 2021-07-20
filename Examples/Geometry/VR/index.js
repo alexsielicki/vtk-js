@@ -29,7 +29,6 @@ const fullScreenRenderer = vtkFullScreenRenderWindow.newInstance({
 const renderer = fullScreenRenderer.getRenderer();
 const renderWindow = fullScreenRenderer.getRenderWindow();
 
-
 const openglRenderWindow = vtkOpenGLRenderWindow.newInstance();
 renderWindow.addView(openglRenderWindow);
 // openglRenderWindow.setContainer(container);
